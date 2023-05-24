@@ -20,7 +20,7 @@ const destinosTuristicos = [
   {
     nombre: "Cataratas del Iguazú",
     descripcion:
-      "Sumérgete en la belleza natural de las Cataratas del Iguazú en la frontera entre Argentina y Brasil. Maravíllate con la cascada más grande del mundo y disfruta de la exuberante selva tropical.",
+      "Sumérgete en la belleza natural de las Cataratas del Iguazú en la frontera entre Argentina y Brasil.",
     imagen:
       "https://c4.wallpaperflare.com/wallpaper/486/350/491/iguazu-falls-wallpaper-preview.jpg",
     precio: 150,
