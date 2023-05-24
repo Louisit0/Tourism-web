@@ -121,8 +121,8 @@ const destinosContainer = document.getElementById("destino");
 destinosTuristicos.forEach((destino) => {
   // Crear el elemento de la card
   const card = document.createElement("div");
-  card.classList.add("card", "rounded-3", "mb-5", "mx-auto");
-  card.style.width = "25rem";
+  card.classList.add("card", "rounded-3", "m-4");
+  card.style.width = "23rem";
 
   // Crear la imagen de la card
   const img = document.createElement("img");
@@ -132,7 +132,7 @@ destinosTuristicos.forEach((destino) => {
 
   // Crear el cuerpo de la card
   const cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
+  cardBody.classList.add("card-body", "m-4");
 
   // Crear el título de la card
   const titulo = document.createElement("h2");
@@ -217,31 +217,37 @@ const clientesContainer = document.getElementById("clientes");
 
 resenaClientes.forEach((cliente) => {
   const card = document.createElement("div");
-  card.classList.add("card", "rounded-5", "mb-5", "mx-auto");
-  card.style.width = "24rem";
+  card.classList.add("card", "rounded-5", "m-4");
+  card.style.width = "27rem";
 
   // Crear la imagen de la card
   const img = document.createElement("img");
-  img.classList.add("card-img-top", "rounded-circle", "mx-auto", "mt-2");
-  img.style.width = "125px";
-  img.style.height = "125px";
+  img.classList.add("rounded-circle");
+  img.style.width = "60px";
+  img.style.height = "60px";
   img.src = cliente.imagen;
   img.alt = cliente.nombre;
 
   // Crear el cuerpo de la card
   const cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
+  cardBody.classList.add("card-body", "m-4");
+
+  const divRow = document.createElement("div");
+  divRow.classList.add("d-flex", "flex-row", "justify-content-start");
+
+  const divCol = document.createElement("div");
+  divCol.classList.add("d-flex", "flex-column", "my-auto", "mx-3");
 
   const nombre = document.createElement("h3");
-  nombre.classList.add("card-title");
+  nombre.classList.add("fs-5", "fw-bold", "text-start");
   nombre.textContent = cliente.nombre;
 
   const descripcion = document.createElement("p");
-  descripcion.classList.add("text-black-50");
+  descripcion.classList.add("text-black-50", "text-start");
   descripcion.textContent = cliente.descripcion;
 
   const estrellas = document.createElement("p");
-  estrellas.classList.add("fs-5");
+  estrellas.classList.add("mb-0", "text-start");
   estrellas.textContent = cliente.estrellas;
 
   const fecha = document.createElement("p");
@@ -249,13 +255,19 @@ resenaClientes.forEach((cliente) => {
   fecha.textContent = cliente.fecha;
 
   // Agregar al cardBody
-  cardBody.appendChild(nombre);
   cardBody.appendChild(descripcion);
-  cardBody.appendChild(estrellas);
-  cardBody.appendChild(fecha);
+  cardBody.appendChild(divRow);
+  cardBody.appendChild(divCol);
+
+  // cardBody.appendChild(fecha);
+
+  divRow.appendChild(img);
+  divCol.appendChild(nombre);
+  divCol.appendChild(estrellas);
+
+  divRow.appendChild(divCol);
 
   // Agregar elementos a la card
-  card.appendChild(img);
   card.appendChild(cardBody);
 
   clientesContainer.appendChild(card);
