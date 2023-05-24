@@ -3,7 +3,8 @@ const destinosTuristicos = [
     nombre: "Salto Ángel",
     descripcion:
       "Embárcate en una aventura épica hacia el majestuoso Salto Ángel en Venezuela. Descubre la cascada más alta del mundo y maravíllate con su belleza imponente.",
-    imagen: "https://xsgames.co/randomusers/assets/avatars/female/6.jpg",
+    imagen:
+      "https://c4.wallpaperflare.com/wallpaper/499/529/311/cliff-waterfall-tropical-rock-wallpaper-preview.jpg",
     precio: 250,
     disponibilidad: true,
   },
@@ -11,7 +12,8 @@ const destinosTuristicos = [
     nombre: "Monte Kilimanjaro",
     descripcion:
       "Desafía tus límites y conquista el majestuoso Monte Kilimanjaro en Tanzania. Disfruta de vistas panorámicas increíbles y vive una experiencia inolvidable.",
-    imagen: "https://xsgames.co/randomusers/assets/avatars/female/6.jpg",
+    imagen:
+      "https://c4.wallpaperflare.com/wallpaper/275/115/823/earth-mount-kilimanjaro-mountain-volcano-wallpaper-preview.jpg",
     precio: 500,
     disponibilidad: false,
   },
@@ -19,7 +21,8 @@ const destinosTuristicos = [
     nombre: "Cataratas del Iguazú",
     descripcion:
       "Sumérgete en la belleza natural de las Cataratas del Iguazú en la frontera entre Argentina y Brasil. Maravíllate con la cascada más grande del mundo y disfruta de la exuberante selva tropical.",
-    imagen: "https://xsgames.co/randomusers/assets/avatars/female/6.jpg",
+    imagen:
+      "https://c4.wallpaperflare.com/wallpaper/486/350/491/iguazu-falls-wallpaper-preview.jpg",
     precio: 150,
     disponibilidad: true,
   },
@@ -27,15 +30,16 @@ const destinosTuristicos = [
     nombre: "Gran Barrera de Coral",
     descripcion:
       "Explora el increíble ecosistema marino de la Gran Barrera de Coral en Australia. Sumérgete en aguas cristalinas, admira la diversidad de corales y descubre la vida marina fascinante.",
-    imagen: "https://xsgames.co/randomusers/assets/avatars/female/6.jpg",
+    imagen: "https://img2.rtve.es/i/?w=1600&i=1524395218444.jpg",
     precio: 300,
-    disponibilidad: true,
+    disponibilidad: false,
   },
   {
     nombre: "Machu Picchu",
     descripcion:
       "Viaja al pasado y descubre la misteriosa ciudadela de Machu Picchu en Perú. Explora las ruinas incas, disfruta de vistas panorámicas y sumérgete en la historia y la cultura de los antiguos habitantes.",
-    imagen: "https://xsgames.co/randomusers/assets/avatars/female/6.jpg",
+    imagen:
+      "https://c0.wallpaperflare.com/preview/707/587/700/peru-machu-picchu-nature-cusco.jpg",
     precio: 200,
     disponibilidad: true,
   },
@@ -43,18 +47,20 @@ const destinosTuristicos = [
     nombre: "Santorini",
     descripcion:
       "Disfruta del encanto de la isla de Santorini en Grecia. Relájate en sus playas de aguas cristalinas, contempla las pintorescas casas blancas y azules y déjate cautivar por los atardeceres románticos.",
-    imagen: "https://xsgames.co/randomusers/assets/avatars/female/6.jpg",
+    imagen:
+      "https://c4.wallpaperflare.com/wallpaper/744/487/759/night-in-santorini-wallpaper-preview.jpg",
     precio: 400,
     disponibilidad: true,
   },
-  {
-    nombre: "Gran Cañón",
-    descripcion:
-      "Contempla la grandiosidad del Gran Cañón en Estados Unidos. Admira los imponentes acantilados, recorre senderos panorámicos y disfruta de vistas espectaculares de una de las maravillas naturales del mundo.",
-    imagen: "https://xsgames.co/randomusers/assets/avatars/female/6.jpg",
-    precio: 180,
-    disponibilidad: true,
-  },
+  // {
+  //   nombre: "Gran Cañón",
+  //   descripcion:
+  //     "Contempla la grandiosidad del Gran Cañón en Estados Unidos. Admira los imponentes acantilados, recorre senderos panorámicos y disfruta de vistas espectaculares de una de las maravillas naturales del mundo.",
+  //   imagen:
+  //     "https://www.elagoradiario.com/wp-content/uploads/2020/01/Gran-Ca%C3%B1%C3%B3n.jpg",
+  //   precio: 180,
+  //   disponibilidad: true,
+  // },
 ];
 
 const resenaClientes = [
@@ -115,12 +121,12 @@ const destinosContainer = document.getElementById("destino");
 destinosTuristicos.forEach((destino) => {
   // Crear el elemento de la card
   const card = document.createElement("div");
-  card.classList.add("card", "rounded-3", "mb-4");
-  card.style.width = "20rem";
+  card.classList.add("card", "rounded-3", "mb-5", "mx-auto");
+  card.style.width = "25rem";
 
   // Crear la imagen de la card
   const img = document.createElement("img");
-  img.classList.add("card-img-top");
+  img.classList.add("card-img-top", "w-100", "h-100");
   img.src = destino.imagen;
   img.alt = destino.nombre;
 
@@ -167,8 +173,20 @@ destinosTuristicos.forEach((destino) => {
     : "No disponible ❌";
 
   const btn = document.createElement("button");
-  btn.classList.add("btn", "btn-secondary", "w-100", "mt-2", "mb-0");
+  btn.classList.add("btn", "w-100", "mt-2", "mb-0");
+  btn.style.backgroundColor = "rosybrown";
+  btn.style.color = "white";
   btn.textContent = "Reservar ahora 📚";
+
+  // Establecer el color de hover
+  btn.addEventListener("mouseover", function () {
+    this.style.backgroundColor = "#c29b9b";
+  });
+
+  // Restaurar el color original al salir del hover
+  btn.addEventListener("mouseout", function () {
+    this.style.backgroundColor = "rosybrown";
+  });
 
   // Agregar elementos al cuerpo de la card
   cardBody.appendChild(titulo);
@@ -199,9 +217,8 @@ const clientesContainer = document.getElementById("clientes");
 
 resenaClientes.forEach((cliente) => {
   const card = document.createElement("div");
-  card.classList.add("card", "rounded-5", "mb-4");
-  card.style.width = "20rem";
-  card.style.height = "26rem";
+  card.classList.add("card", "rounded-5", "mb-5", "mx-auto");
+  card.style.width = "24rem";
 
   // Crear la imagen de la card
   const img = document.createElement("img");
