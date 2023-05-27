@@ -1,5 +1,6 @@
 const destinosTuristicos = [
   {
+    id: 1,
     nombre: "Salto Ángel",
     descripcion:
       "Embárcate en una aventura épica hacia el majestuoso Salto Ángel en Venezuela. Descubre la cascada más alta del mundo y maravíllate con su belleza imponente.",
@@ -9,6 +10,7 @@ const destinosTuristicos = [
     disponibilidad: true,
   },
   {
+    id: 2,
     nombre: "Monte Kilimanjaro",
     descripcion:
       "Desafía tus límites y conquista el majestuoso Monte Kilimanjaro en Tanzania. Disfruta de vistas panorámicas increíbles y vive una experiencia inolvidable.",
@@ -18,6 +20,7 @@ const destinosTuristicos = [
     disponibilidad: false,
   },
   {
+    id: 3,
     nombre: "Cataratas del Iguazú",
     descripcion:
       "Sumérgete en la belleza natural de las Cataratas del Iguazú en la frontera entre Argentina y Brasil.",
@@ -27,6 +30,7 @@ const destinosTuristicos = [
     disponibilidad: true,
   },
   {
+    id: 4,
     nombre: "Gran Barrera de Coral",
     descripcion:
       "Explora el increíble ecosistema marino de la Gran Barrera de Coral en Australia. Sumérgete en aguas cristalinas, admira la diversidad de corales y descubre la vida marina fascinante.",
@@ -35,6 +39,7 @@ const destinosTuristicos = [
     disponibilidad: false,
   },
   {
+    id: 5,
     nombre: "Machu Picchu",
     descripcion:
       "Viaja al pasado y descubre la misteriosa ciudadela de Machu Picchu en Perú. Explora las ruinas incas, disfruta de vistas panorámicas y sumérgete en la historia y la cultura de los antiguos habitantes.",
@@ -44,6 +49,7 @@ const destinosTuristicos = [
     disponibilidad: true,
   },
   {
+    id: 6,
     nombre: "Santorini",
     descripcion:
       "Disfruta del encanto de la isla de Santorini en Grecia. Relájate en sus playas de aguas cristalinas, contempla las pintorescas casas blancas y azules y déjate cautivar por los atardeceres románticos.",
@@ -53,6 +59,7 @@ const destinosTuristicos = [
     disponibilidad: true,
   },
   // {
+  //   id: 7,
   //   nombre: "Gran Cañón",
   //   descripcion:
   //     "Contempla la grandiosidad del Gran Cañón en Estados Unidos. Admira los imponentes acantilados, recorre senderos panorámicos y disfruta de vistas espectaculares de una de las maravillas naturales del mundo.",
@@ -178,6 +185,17 @@ destinosTuristicos.forEach((destino) => {
   btn.style.color = "white";
   btn.textContent = "Reservar ahora 📚";
 
+  // Agregar los atributos data-bs-toggle, data-bs-target y aria-controls
+  btn.setAttribute("data-bs-toggle", "offcanvas");
+  btn.setAttribute("data-bs-target", "#offcanvasRight");
+  btn.setAttribute("aria-controls", "offcanvasRight");
+
+  // Agregar evento click al botón
+  btn.addEventListener("click", function () {
+    addPaquete(destino);
+    updateCarrito();
+  });
+
   // Establecer el color de hover
   btn.addEventListener("mouseover", function () {
     this.style.backgroundColor = "#c29b9b";
@@ -272,3 +290,126 @@ resenaClientes.forEach((cliente) => {
 
   clientesContainer.appendChild(card);
 });
+
+// Carrito
+
+const carrito = [];
+
+let cantidad = 0;
+
+const addPaquete = (destino) => {
+  carrito.push(destinosTuristicos.find((item) => item.id === destino.id));
+  console.log(`${destino.nombre} ha sido añadido al carrito`);
+
+  const paqueteExistente = carrito.find((item) => item.id === destino.id);
+
+  if (paqueteExistente) {
+    // El paquete ya existe en el carrito, actualiza la cantidad
+    cantidad += 1;
+    console.log(
+      `Cantidad de ${destino.nombre} actualizada: ${paqueteExistente.cantidad}`
+    );
+  } else {
+    // El paquete no existe en el carrito, agrégalo con cantidad 1
+    carrito.push({ ...destino, cantidad: 1 });
+    console.log(`${destino.nombre} ha sido añadido al carrito`);
+  }
+};
+
+const carritoContainer = document.getElementById("paquetes");
+
+const updateCarrito = () => {
+  carritoContainer.innerHTML = ""; // Vaciar el contenedor antes de agregar las nuevas cards
+  carrito.forEach((paquete) => {
+    const paqueteExistente = document.getElementById(
+      "product-cart" + paquete.id
+    );
+
+    if (paqueteExistente) {
+      // La card del paquete ya existe, solo actualiza la cantidad
+      const cantidadTxt = paqueteExistente.querySelector(".card-quantity");
+      if (cantidadTxt) {
+        cantidadTxt.textContent = `Cantidad: ${cantidad}`;
+      }
+    } else {
+      // Crea una nueva card para el paquete
+      const card = document.createElement("div");
+      card.classList.add("w-100", "d-flex", "flex-column", "mb-4");
+      card.style.width = "23rem";
+      card.setAttribute("id", "product-cart" + paquete.id);
+
+      const btnClose = document.createElement("button");
+      btnClose.classList.add("btn-close", "align-self-end", "mb-2");
+
+      // Crear la imagen de la card
+      const img = document.createElement("img");
+      img.classList.add("card-img-top", "w-100", "h-100");
+      img.src = paquete.imagen;
+      img.alt = paquete.nombre;
+
+      // Crear el título de la card
+      const titulo = document.createElement("h3");
+      titulo.classList.add("card-title", "my-2");
+      titulo.textContent = `Viaje a ${paquete.nombre}`;
+      titulo.style.color = "rosybrown";
+
+      // Crear el precio de la card
+      const precio = document.createElement("p");
+      precio.classList.add("card-text", "fw-bold", "my-auto");
+
+      // Crear el elemento <span> para el valor del precio
+      const precioValor = document.createElement("span");
+      precioValor.style.color = "green";
+      precioValor.textContent = "$ " + paquete.precio;
+
+      const divRow = document.createElement("div");
+      divRow.classList.add("d-flex", "flex-row");
+      // Agregar el texto "Precio: $" y el valor del precio al elemento <p>
+      precio.innerHTML = `${precioValor.outerHTML}`;
+
+      const btnMenos = document.createElement("button");
+      btnMenos.classList.add("btn", "btn-secondary", "ms-auto");
+      btnMenos.textContent = "-";
+
+      const inputCantidad = document.createElement("input");
+      inputCantidad.classList.add("form-control", "w-25", "mx-1");
+      inputCantidad.placeholder = "1";
+
+      const btnMas = document.createElement("button");
+      btnMas.classList.add("btn", "btn-secondary");
+      btnMas.textContent = "+";
+
+      const cantidadTxt = document.createElement("p");
+      cantidadTxt.classList.add(
+        "card-text",
+        "fw-bold",
+        "my-auto",
+        "card-quantity"
+      );
+      cantidadTxt.textContent = `Cantidad: ${cantidad}`;
+
+      const hr = document.createElement("hr");
+      hr.classList.add("w-100", "my-5");
+
+      card.appendChild(btnClose);
+      card.appendChild(img);
+      card.appendChild(titulo);
+
+      divRow.appendChild(precio);
+      divRow.appendChild(btnMenos);
+      divRow.appendChild(inputCantidad);
+      divRow.appendChild(btnMas);
+
+      card.appendChild(divRow);
+      card.appendChild(cantidadTxt);
+      card.appendChild(hr);
+
+      carritoContainer.appendChild(card);
+    }
+  });
+};
+
+// Función para obtener el producto asociado al botón
+// function deletePaquete(destino) {
+//   carrito.splice
+// }
