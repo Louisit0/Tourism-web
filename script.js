@@ -325,9 +325,9 @@ const updateCarrito = (paquete) => {
     card.style.width = "23rem";
     card.setAttribute("id", "paquete-cart" + paquete.id);
 
-    const btnClose = document.createElement("button");
-    btnClose.classList.add("btn-close", "align-self-end", "mb-2");
-    btnClose.addEventListener("click", function () {
+    const btnRemove = document.createElement("button");
+    btnRemove.classList.add("btn-close", "align-self-end", "mb-2");
+    btnRemove.addEventListener("click", function () {
       deletePaquete(paquete.id);
     });
 
@@ -365,7 +365,7 @@ const updateCarrito = (paquete) => {
     const hr = document.createElement("hr");
     hr.classList.add("w-100", "my-5");
 
-    card.appendChild(btnClose);
+    card.appendChild(btnRemove);
     card.appendChild(img);
     card.appendChild(titulo);
 
