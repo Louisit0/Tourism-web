@@ -390,6 +390,7 @@ const createTotalElement = () => {
   indicadorTotal.innerHTML = ""; // Limpiar el contenido existente
 
   const textoTotal = document.createElement("p");
+  textoTotal.classList.add("fw-bold");
   textoTotal.textContent = `Total: ${total}`;
 
   indicadorTotal.appendChild(textoTotal);
