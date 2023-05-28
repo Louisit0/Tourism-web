@@ -8,6 +8,7 @@ const destinosTuristicos = [
       "https://c4.wallpaperflare.com/wallpaper/499/529/311/cliff-waterfall-tropical-rock-wallpaper-preview.jpg",
     precio: 250,
     disponibilidad: true,
+    cantidad: 1,
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ const destinosTuristicos = [
       "https://c4.wallpaperflare.com/wallpaper/275/115/823/earth-mount-kilimanjaro-mountain-volcano-wallpaper-preview.jpg",
     precio: 500,
     disponibilidad: false,
+    cantidad: 1,
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const destinosTuristicos = [
       "https://c4.wallpaperflare.com/wallpaper/486/350/491/iguazu-falls-wallpaper-preview.jpg",
     precio: 150,
     disponibilidad: true,
+    cantidad: 1,
   },
   {
     id: 4,
@@ -37,6 +40,7 @@ const destinosTuristicos = [
     imagen: "https://img2.rtve.es/i/?w=1600&i=1524395218444.jpg",
     precio: 300,
     disponibilidad: false,
+    cantidad: 1,
   },
   {
     id: 5,
@@ -47,6 +51,7 @@ const destinosTuristicos = [
       "https://c0.wallpaperflare.com/preview/707/587/700/peru-machu-picchu-nature-cusco.jpg",
     precio: 200,
     disponibilidad: true,
+    cantidad: 1,
   },
   {
     id: 6,
@@ -57,6 +62,7 @@ const destinosTuristicos = [
       "https://c4.wallpaperflare.com/wallpaper/744/487/759/night-in-santorini-wallpaper-preview.jpg",
     precio: 400,
     disponibilidad: true,
+    cantidad: 1,
   },
   // {
   //   id: 7,
@@ -193,7 +199,7 @@ destinosTuristicos.forEach((destino) => {
   // Agregar evento click al botón
   btn.addEventListener("click", function () {
     addPaquete(destino);
-    updateCarrito();
+    updateCarrito(destino);
   });
 
   // Establecer el color de hover
@@ -295,121 +301,89 @@ resenaClientes.forEach((cliente) => {
 
 const carrito = [];
 
-let cantidad = 0;
-
 const addPaquete = (destino) => {
   carrito.push(destinosTuristicos.find((item) => item.id === destino.id));
-  console.log(`${destino.nombre} ha sido añadido al carrito`);
-
-  const paqueteExistente = carrito.find((item) => item.id === destino.id);
-
-  if (paqueteExistente) {
-    // El paquete ya existe en el carrito, actualiza la cantidad
-    cantidad += 1;
-    console.log(
-      `Cantidad de ${destino.nombre} actualizada: ${paqueteExistente.cantidad}`
-    );
-  } else {
-    // El paquete no existe en el carrito, agrégalo con cantidad 1
-    carrito.push({ ...destino, cantidad: 1 });
-    console.log(`${destino.nombre} ha sido añadido al carrito`);
-  }
+  console.log(`Cantidad de ${destino.nombre} actualizada: ${destino.cantidad}`);
 };
 
 const carritoContainer = document.getElementById("paquetes");
 
-const updateCarrito = () => {
-  carritoContainer.innerHTML = ""; // Vaciar el contenedor antes de agregar las nuevas cards
-  carrito.forEach((paquete) => {
-    const paqueteExistente = document.getElementById(
-      "product-cart" + paquete.id
-    );
+const updateCarrito = (paquete) => {
+  const paqueteExistente = document.getElementById("paquete-cart" + paquete.id);
 
-    if (paqueteExistente) {
-      // La card del paquete ya existe, solo actualiza la cantidad
-      const cantidadTxt = paqueteExistente.querySelector(".card-quantity");
-      if (cantidadTxt) {
-        cantidadTxt.textContent = `Cantidad: ${cantidad}`;
-      }
-    } else {
-      // Crea una nueva card para el paquete
-      const card = document.createElement("div");
-      card.classList.add("w-100", "d-flex", "flex-column", "mb-4");
-      card.style.width = "23rem";
-      card.setAttribute("id", "product-cart" + paquete.id);
+  if (paqueteExistente) {
+    // La card del paquete ya existe, solo actualiza la cantidad
+    const cantidadTxt = document.getElementById("cant" + paquete.id);
+    paquete.cantidad += 1;
+    cantidadTxt.textContent = `Cantidad: ${paquete.cantidad}`;
+    console.log("Cantidad: " + paquete.cantidad);
+  } else {
+    paquete.cantidad = 1;
+    // Crea una nueva card para el paquete
+    const card = document.createElement("div");
+    card.classList.add("w-100", "d-flex", "flex-column", "mb-4");
+    card.style.width = "23rem";
+    card.setAttribute("id", "paquete-cart" + paquete.id);
 
-      const btnClose = document.createElement("button");
-      btnClose.classList.add("btn-close", "align-self-end", "mb-2");
+    const btnClose = document.createElement("button");
+    btnClose.classList.add("btn-close", "align-self-end", "mb-2");
+    btnClose.addEventListener("click", function () {
+      deletePaquete(paquete.id);
+    });
 
-      // Crear la imagen de la card
-      const img = document.createElement("img");
-      img.classList.add("card-img-top", "w-100", "h-100");
-      img.src = paquete.imagen;
-      img.alt = paquete.nombre;
+    // Crear la imagen de la card
+    const img = document.createElement("img");
+    img.classList.add("card-img-top", "w-100", "h-100");
+    img.src = paquete.imagen;
+    img.alt = paquete.nombre;
 
-      // Crear el título de la card
-      const titulo = document.createElement("h3");
-      titulo.classList.add("card-title", "my-2");
-      titulo.textContent = `Viaje a ${paquete.nombre}`;
-      titulo.style.color = "rosybrown";
+    // Crear el título de la card
+    const titulo = document.createElement("h3");
+    titulo.classList.add("card-title", "my-2");
+    titulo.textContent = `Viaje a ${paquete.nombre}`;
+    titulo.style.color = "rosybrown";
 
-      // Crear el precio de la card
-      const precio = document.createElement("p");
-      precio.classList.add("card-text", "fw-bold", "my-auto");
+    // Crear el precio de la card
+    const precio = document.createElement("p");
+    precio.classList.add("card-text", "fw-bold", "my-auto");
 
-      // Crear el elemento <span> para el valor del precio
-      const precioValor = document.createElement("span");
-      precioValor.style.color = "green";
-      precioValor.textContent = "$ " + paquete.precio;
+    // Crear el elemento <span> para el valor del precio
+    const precioValor = document.createElement("span");
+    precioValor.style.color = "green";
+    precioValor.textContent = "$ " + paquete.precio;
 
-      const divRow = document.createElement("div");
-      divRow.classList.add("d-flex", "flex-row");
-      // Agregar el texto "Precio: $" y el valor del precio al elemento <p>
-      precio.innerHTML = `${precioValor.outerHTML}`;
+    const divRow = document.createElement("div");
+    divRow.classList.add("d-flex", "flex-row");
+    // Agregar el texto "Precio: $" y el valor del precio al elemento <p>
+    precio.innerHTML = `${precioValor.outerHTML}`;
 
-      const btnMenos = document.createElement("button");
-      btnMenos.classList.add("btn", "btn-secondary", "ms-auto");
-      btnMenos.textContent = "-";
+    const cantidadTxt = document.createElement("p");
+    cantidadTxt.classList.add("card-text", "fw-bold", "my-auto");
+    cantidadTxt.textContent = `Cantidad: ${paquete.cantidad}`;
+    cantidadTxt.setAttribute("id", "cant" + paquete.id);
 
-      const inputCantidad = document.createElement("input");
-      inputCantidad.classList.add("form-control", "w-25", "mx-1");
-      inputCantidad.placeholder = "1";
+    const hr = document.createElement("hr");
+    hr.classList.add("w-100", "my-5");
 
-      const btnMas = document.createElement("button");
-      btnMas.classList.add("btn", "btn-secondary");
-      btnMas.textContent = "+";
+    card.appendChild(btnClose);
+    card.appendChild(img);
+    card.appendChild(titulo);
 
-      const cantidadTxt = document.createElement("p");
-      cantidadTxt.classList.add(
-        "card-text",
-        "fw-bold",
-        "my-auto",
-        "card-quantity"
-      );
-      cantidadTxt.textContent = `Cantidad: ${cantidad}`;
+    divRow.appendChild(precio);
 
-      const hr = document.createElement("hr");
-      hr.classList.add("w-100", "my-5");
+    card.appendChild(divRow);
+    card.appendChild(cantidadTxt);
+    card.appendChild(hr);
 
-      card.appendChild(btnClose);
-      card.appendChild(img);
-      card.appendChild(titulo);
-
-      divRow.appendChild(precio);
-      divRow.appendChild(btnMenos);
-      divRow.appendChild(inputCantidad);
-      divRow.appendChild(btnMas);
-
-      card.appendChild(divRow);
-      card.appendChild(cantidadTxt);
-      card.appendChild(hr);
-
-      carritoContainer.appendChild(card);
-    }
-  });
+    carritoContainer.appendChild(card);
+  }
 };
 
-// Función para obtener el producto asociado al botón
-// function deletePaquete(destino) {
-//   carrito.splice
-// }
+const deletePaquete = (productoId) => {
+  let paqueteIndex = carrito.findIndex((item) => item.id == productoId);
+  carrito.splice(paqueteIndex, 1);
+
+  let paqueteElement = document.getElementById("paquete-cart" + productoId);
+  paqueteElement.remove();
+  console.log(cart);
+};
