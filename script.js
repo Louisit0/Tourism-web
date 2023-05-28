@@ -299,14 +299,17 @@ resenaClientes.forEach((cliente) => {
 
 // Carrito
 
+let total = 0;
+
 const carrito = [];
+
+const carritoContainer = document.getElementById("paquetes");
 
 const addPaquete = (destino) => {
   carrito.push(destinosTuristicos.find((item) => item.id === destino.id));
+  total += destino.precio;
   console.log(`Cantidad de ${destino.nombre} actualizada: ${destino.cantidad}`);
 };
-
-const carritoContainer = document.getElementById("paquetes");
 
 const updateCarrito = (paquete) => {
   const paqueteExistente = document.getElementById("paquete-cart" + paquete.id);
@@ -315,13 +318,15 @@ const updateCarrito = (paquete) => {
     // La card del paquete ya existe, solo actualiza la cantidad
     const cantidadTxt = document.getElementById("cant" + paquete.id);
     paquete.cantidad += 1;
+    total = carrito.reduce((acc, paquete) => acc + paquete.precio, 0);
+
     cantidadTxt.textContent = `Cantidad: ${paquete.cantidad}`;
     console.log("Cantidad: " + paquete.cantidad);
   } else {
     paquete.cantidad = 1;
     // Crea una nueva card para el paquete
     const card = document.createElement("div");
-    card.classList.add("w-100", "d-flex", "flex-column", "mb-4");
+    card.classList.add("w-100", "d-flex", "flex-column");
     card.style.width = "23rem";
     card.setAttribute("id", "paquete-cart" + paquete.id);
 
@@ -363,7 +368,7 @@ const updateCarrito = (paquete) => {
     cantidadTxt.setAttribute("id", "cant" + paquete.id);
 
     const hr = document.createElement("hr");
-    hr.classList.add("w-100", "my-5");
+    hr.classList.add("w-100", "my-4");
 
     card.appendChild(btnRemove);
     card.appendChild(img);
@@ -377,6 +382,17 @@ const updateCarrito = (paquete) => {
 
     carritoContainer.appendChild(card);
   }
+  createTotalElement();
+};
+
+const createTotalElement = () => {
+  const indicadorTotal = document.getElementById("total");
+  indicadorTotal.innerHTML = ""; // Limpiar el contenido existente
+
+  const textoTotal = document.createElement("p");
+  textoTotal.textContent = `Total: ${total}`;
+
+  indicadorTotal.appendChild(textoTotal);
 };
 
 const deletePaquete = (productoId) => {
@@ -385,5 +401,5 @@ const deletePaquete = (productoId) => {
 
   let paqueteElement = document.getElementById("paquete-cart" + productoId);
   paqueteElement.remove();
-  console.log(cart);
+  console.log(carrito);
 };
