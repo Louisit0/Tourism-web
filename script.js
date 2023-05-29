@@ -301,7 +301,7 @@ resenaClientes.forEach((cliente) => {
 
 let total = 0;
 
-const carrito = [];
+let carrito = [];
 
 const carritoContainer = document.getElementById("paquetes");
 
@@ -309,6 +309,7 @@ const addPaquete = (destino) => {
   carrito.push(destinosTuristicos.find((item) => item.id === destino.id));
   total += destino.precio;
   console.log(`Cantidad de ${destino.nombre} actualizada: ${destino.cantidad}`);
+  guardarCarritoEnLocalStorage();
 };
 
 const updateCarrito = (paquete) => {
@@ -383,6 +384,7 @@ const updateCarrito = (paquete) => {
     carritoContainer.appendChild(card);
   }
   createTotalElement();
+  guardarCarritoEnLocalStorage();
 };
 
 const createTotalElement = () => {
@@ -397,10 +399,46 @@ const createTotalElement = () => {
 };
 
 const deletePaquete = (productoId) => {
-  let paqueteIndex = carrito.findIndex((item) => item.id == productoId);
-  carrito.splice(paqueteIndex, 1);
+  const paqueteEliminado = carrito.find((item) => item.id === productoId);
 
-  let paqueteElement = document.getElementById("paquete-cart" + productoId);
-  paqueteElement.remove();
-  console.log(carrito);
+  if (paqueteEliminado) {
+    const cantidadEliminada = paqueteEliminado.cantidad;
+    total -= paqueteEliminado.precio * cantidadEliminada;
+
+    carrito = carrito.filter((item) => item.id !== productoId);
+
+    let paqueteElements = document.querySelectorAll(
+      "[id='paquete-cart" + productoId + "']"
+    );
+    paqueteElements.forEach((paqueteElement) => {
+      paqueteElement.remove();
+    });
+
+    guardarCarritoEnLocalStorage();
+    createTotalElement();
+  }
 };
+
+const init = () => {
+  cargarCarritoDesdeLocalStorage();
+};
+
+// LocalStorage
+const guardarCarritoEnLocalStorage = () => {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+};
+
+const cargarCarritoDesdeLocalStorage = () => {
+  const carritoGuardado = localStorage.getItem("carrito");
+
+  if (carritoGuardado) {
+    carrito = JSON.parse(carritoGuardado);
+    carritoContainer.innerHTML = ""; // Limpiar el contenido existente del carrito
+
+    carrito.forEach((paquete) => {
+      updateCarrito(paquete);
+    });
+  }
+};
+
+init();
