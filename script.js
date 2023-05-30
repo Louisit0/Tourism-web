@@ -422,6 +422,7 @@ const createComprarElement = () => {
     document.getElementById("paquetes").innerHTML = "";
     document.getElementById("total").innerHTML = "";
     document.getElementById("comprar").innerHTML = "";
+    total = 0;
     const toastElement = document.getElementById("liveToast");
     const toast = new bootstrap.Toast(toastElement);
     toast.show();
