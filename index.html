@@ -117,9 +117,32 @@
       <div class="offcanvas-body">
         <div id="paquetes"></div>
         <p id="total"></p>
+        <div id="comprar"></div>
       </div>
     </div>
     <!-- End offCanvas -->
+
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="liveToast"
+        class="toast align-items-center text-bg-primary bg-success border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body">¡Compra realizada! ✨</div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <!-- end toast -->
 
     <main class="container mx-auto w-100">
       <h2 id="destinos" class="text-center fw-bold mt-5">Destinos populares</h2>

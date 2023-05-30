@@ -385,6 +385,7 @@ const updateCarrito = (paquete) => {
     carritoContainer.appendChild(card);
   }
   createTotalElement();
+  createComprarElement();
   guardarCarritoEnLocalStorage();
 };
 
@@ -397,6 +398,36 @@ const createTotalElement = () => {
   textoTotal.textContent = `Total: ${total}`;
 
   indicadorTotal.appendChild(textoTotal);
+};
+
+const createComprarElement = () => {
+  const btnComprar = document.getElementById("comprar");
+  btnComprar.innerHTML = ""; // Limpiar el contenido existente
+  const btn = document.createElement("button");
+  btn.classList.add(
+    "btn",
+    carrito.length !== 0 ? "d-block" : "d-none",
+    "btn-secondary",
+    "w-100",
+    "mx-auto"
+  );
+  btn.textContent = "Comprar";
+
+  btn.setAttribute("data-bs-dismiss", "offcanvas");
+  btn.setAttribute("aria-label", "Close");
+
+  btn.addEventListener("click", () => {
+    carrito = [];
+    localStorage.removeItem("carrito");
+    document.getElementById("paquetes").innerHTML = "";
+    document.getElementById("total").innerHTML = "";
+    document.getElementById("comprar").innerHTML = "";
+    const toastElement = document.getElementById("liveToast");
+    const toast = new bootstrap.Toast(toastElement);
+    toast.show();
+  });
+
+  btnComprar.appendChild(btn);
 };
 
 const deletePaquete = (productoId) => {
