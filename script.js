@@ -190,6 +190,7 @@ destinosTuristicos.forEach((destino) => {
   btn.style.backgroundColor = "rosybrown";
   btn.style.color = "white";
   btn.textContent = "Reservar ahora 📚";
+  btn.disabled = !destino.disponibilidad;
 
   // Agregar los atributos data-bs-toggle, data-bs-target y aria-controls
   btn.setAttribute("data-bs-toggle", "offcanvas");
@@ -392,7 +393,7 @@ const createTotalElement = () => {
   indicadorTotal.innerHTML = ""; // Limpiar el contenido existente
 
   const textoTotal = document.createElement("p");
-  textoTotal.classList.add("fw-bold");
+  textoTotal.classList.add("fs-4", "fw-bold");
   textoTotal.textContent = `Total: ${total}`;
 
   indicadorTotal.appendChild(textoTotal);
@@ -436,6 +437,10 @@ const cargarCarritoDesdeLocalStorage = () => {
     carritoContainer.innerHTML = ""; // Limpiar el contenido existente del carrito
 
     carrito.forEach((paquete) => {
+      const paqueteExistente = carrito.find((item) => item.id === paquete.id);
+      if (paqueteExistente) {
+        paquete.cantidad = paqueteExistente.cantidad; // Actualizar la cantidad del paquete desde el carrito
+      }
       updateCarrito(paquete);
     });
   }
