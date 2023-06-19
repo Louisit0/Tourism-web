@@ -335,7 +335,25 @@ const updateCarrito = (paquete) => {
     const btnRemove = document.createElement("button");
     btnRemove.classList.add("btn-close", "align-self-end", "mb-2");
     btnRemove.addEventListener("click", function () {
-      deletePaquete(paquete.id);
+      Swal.fire({
+        title: "¿Estás seguro/a de esto?",
+        text: "¡No podrás revertir esta acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            "Eliminado!",
+            "Su paquete fue retirado del carrito.",
+            "success"
+          );
+          deletePaquete(paquete.id);
+        }
+      });
     });
 
     // Crear la imagen de la card
@@ -423,9 +441,12 @@ const createComprarElement = () => {
     document.getElementById("total").innerHTML = "";
     document.getElementById("comprar").innerHTML = "";
     total = 0;
-    const toastElement = document.getElementById("liveToast");
-    const toast = new bootstrap.Toast(toastElement);
-    toast.show();
+    Swal.fire({
+      icon: "success",
+      title: "¡Compra realizada!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   });
 
   btnComprar.appendChild(btn);
