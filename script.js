@@ -311,6 +311,12 @@ const addPaquete = (destino) => {
   total += destino.precio;
   console.log(`Cantidad de ${destino.nombre} actualizada: ${destino.cantidad}`);
   guardarCarritoEnLocalStorage();
+
+  // POR ACA ME QUEDE
+  if (carrito.length !== 0) {
+    const btnComprar = document.getElementById("comprar");
+    btnComprar.classList.add("d-block");
+  }
 };
 
 const updateCarrito = (paquete) => {
@@ -346,11 +352,15 @@ const updateCarrito = (paquete) => {
         cancelButtonText: "Cancelar",
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            "Eliminado!",
-            "Su paquete fue retirado del carrito.",
-            "success"
-          );
+          Swal.fire({
+            title: "Eliminado!",
+            text: "Su paquete fue retirado del carrito.",
+            icon: "success",
+            timer: 1500, // Tiempo en milisegundos
+            timerProgressBar: true, // Muestra una barra de progreso durante el tiempo establecido
+            allowEscapeKey: false, // Evita que se cierre al presionar la tecla Esc
+            showConfirmButton: false,
+          });
           deletePaquete(paquete.id);
         }
       });
@@ -421,6 +431,7 @@ const createTotalElement = () => {
 const createComprarElement = () => {
   const btnComprar = document.getElementById("comprar");
   btnComprar.innerHTML = ""; // Limpiar el contenido existente
+
   const btn = document.createElement("button");
   btn.classList.add(
     "btn",
@@ -470,6 +481,11 @@ const deletePaquete = (productoId) => {
 
     guardarCarritoEnLocalStorage();
     createTotalElement();
+
+    if (carrito.length === 0) {
+      const btnComprar = document.getElementById("comprar");
+      btnComprar.classList.add("d-none");
+    }
   }
 };
 
