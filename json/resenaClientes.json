@@ -1,0 +1,44 @@
+[
+  {
+    "nombre": "Pedro Almeida",
+    "descripcion": "\"Mi viaje al Salto Ángel fue una experiencia increíble. Quedé asombrado por la majestuosidad de la cascada más alta del mundo.¡Fue una aventura épica que nunca olvidaré!\"",
+    "imagen": "https://xsgames.co/randomusers/assets/avatars/male/63.jpg",
+    "estrellas": "⭐⭐⭐⭐⭐",
+    "fecha": "20/02/2023"
+  },
+  {
+    "nombre": "Clint Davis",
+    "descripcion": "\"La ascensión al Kilimanjaro fue desafiante pero gratificante. La vista desde la cima era impresionante, con la vasta sabana africana extendiéndose hasta donde alcanza la vista.\"",
+    "imagen": "https://xsgames.co/randomusers/assets/avatars/male/46.jpg",
+    "estrellas": "⭐⭐⭐⭐",
+    "fecha": "20/02/2023"
+  },
+  {
+    "nombre": "Lucas Fernandez",
+    "descripcion": "\"Visitar las Cataratas de Iguazú fue una experiencia de ensueño. Quedé maravillado por la magnitud y la belleza de las cascadas.\"",
+    "imagen": "https://xsgames.co/randomusers/assets/avatars/male/74.jpg",
+    "estrellas": "⭐⭐⭐⭐⭐",
+    "fecha": "20/02/2023"
+  },
+  {
+    "nombre": "Jessica Stones",
+    "descripcion": "\"Las Cataratas del Iguazú son una maravilla natural que todo el mundo debería visitar al menos una vez en su vida. \"",
+    "imagen": "https://xsgames.co/randomusers/assets/avatars/female/6.jpg",
+    "estrellas": "⭐⭐⭐⭐",
+    "fecha": "20/02/2023"
+  },
+  {
+    "nombre": "María Silva",
+    "descripcion": "\"Subir al Kilimanjaro fue una experiencia desafiante pero gratificante. Las vistas panorámicas desde la cima son simplemente impresionantes. \"",
+    "imagen": "https://xsgames.co/randomusers/assets/avatars/female/33.jpg",
+    "estrellas": "⭐⭐⭐⭐⭐",
+    "fecha": "20/02/2023"
+  },
+  {
+    "nombre": "Melissa Clarke",
+    "descripcion": "\"El Salto Ángel es simplemente espectacular. La vista de esta imponente cascada te deja sin aliento. El sonido del agua cayendo desde esa altura es una experiencia única. \"",
+    "imagen": "https://thenewcode.com/assets/images/thumbnails/sarah-parmenter.jpeg",
+    "estrellas": "⭐⭐⭐⭐",
+    "fecha": "20/02/2023"
+  }
+]
