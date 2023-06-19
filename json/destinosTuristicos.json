@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "nombre": "Salto Ángel",
+    "descripcion": "Embárcate en una aventura épica hacia el majestuoso Salto Ángel en Venezuela. Descubre la cascada más alta del mundo y maravíllate con su belleza imponente.",
+    "imagen": "https://c4.wallpaperflare.com/wallpaper/499/529/311/cliff-waterfall-tropical-rock-wallpaper-preview.jpg",
+    "precio": 250,
+    "disponibilidad": true,
+    "cantidad": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Monte Kilimanjaro",
+    "descripcion": "Desafía tus límites y conquista el majestuoso Monte Kilimanjaro en Tanzania. Disfruta de vistas panorámicas increíbles y vive una experiencia inolvable.",
+    "imagen": "https://c4.wallpaperflare.com/wallpaper/275/115/823/earth-mount-kilimanjaro-mountain-volcano-wallpaper-preview.jpg",
+    "precio": 500,
+    "disponibilidad": false,
+    "cantidad": 1
+  },
+  {
+    "id": 3,
+    "nombre": "Cataratas del Iguazú",
+    "descripcion": "Sumérgete en la belleza natural de las Cataratas del Iguazú en la frontera entre Argentina y Brasil.",
+    "imagen": "https://c4.wallpaperflare.com/wallpaper/486/350/491/iguazu-falls-wallpaper-preview.jpg",
+    "precio": 150,
+    "disponibilidad": true,
+    "cantidad": 1
+  },
+  {
+    "id": 4,
+    "nombre": "Gran Barrera de Coral",
+    "descripcion": "Explora el increíble ecosistema marino de la Gran Barrera de Coral en Australia. Sumérgete en aguas cristalinas, admira la diversidad de corales y descubre la vida marina fascinante.",
+    "imagen": "https://img2.rtve.es/i/?w=1600&i=1524395218444.jpg",
+    "precio": 300,
+    "disponibilidad": false,
+    "cantidad": 1
+  },
+  {
+    "id": 5,
+    "nombre": "Machu Picchu",
+    "descripcion": "Viaja al pasado y descubre la misteriosa ciudadela de Machu Picchu en Perú. Explora las ruinas incas, disfruta de vistas panorámicas y sumérgete en la historia y la cultura de los antiguos habitantes.",
+    "imagen": "https://c0.wallpaperflare.com/preview/707/587/700/peru-machu-picchu-nature-cusco.jpg",
+    "precio": 200,
+    "disponibilidad": true,
+    "cantidad": 1
+  },
+  {
+    "id": 6,
+    "nombre": "Santorini",
+    "descripcion": "Disfruta del encanto de la isla de Santorini en Grecia. Relájate en sus playas de aguas cristalinas, contempla las pintorescas casas blancas y azules y déjate cautivar por los atardeceres románticos.",
+    "imagen": "https://c4.wallpaperflare.com/wallpaper/744/487/759/night-in-santorini-wallpaper-preview.jpg",
+    "precio": 400,
+    "disponibilidad": true,
+    "cantidad": 1
+  }
+]
