@@ -482,6 +482,8 @@ const deletePaquete = (productoId) => {
     guardarCarritoEnLocalStorage();
     createTotalElement();
 
+    //prueba.
+
     // if (carrito.length === 0) {
     //   const btnComprar = document.getElementById("comprar");
     //   btnComprar.classList.add("d-none");
