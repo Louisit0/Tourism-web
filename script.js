@@ -312,11 +312,11 @@ const addPaquete = (destino) => {
   console.log(`Cantidad de ${destino.nombre} actualizada: ${destino.cantidad}`);
   guardarCarritoEnLocalStorage();
 
-  // POR ACA ME QUEDE
-  if (carrito.length !== 0) {
-    const btnComprar = document.getElementById("comprar");
-    btnComprar.classList.add("d-block");
-  }
+  // // POR ACA ME QUEDE
+  // if (carrito.length !== 0) {
+  //   const btnComprar = document.getElementById("comprar");
+  //   btnComprar.classList.add("d-block");
+  // }
 };
 
 const updateCarrito = (paquete) => {
@@ -482,10 +482,10 @@ const deletePaquete = (productoId) => {
     guardarCarritoEnLocalStorage();
     createTotalElement();
 
-    if (carrito.length === 0) {
-      const btnComprar = document.getElementById("comprar");
-      btnComprar.classList.add("d-none");
-    }
+    // if (carrito.length === 0) {
+    //   const btnComprar = document.getElementById("comprar");
+    //   btnComprar.classList.add("d-none");
+    // }
   }
 };
 
