@@ -415,6 +415,7 @@ const cargarCarritoDesdeLocalStorage = () => {
     });
   }
 };
+
 fetchDestinosTuristicos();
 fetchResenaClientes();
 init();

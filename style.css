@@ -20,25 +20,10 @@ body {
   z-index: -1;
 }
 
-.spikes {
-  position: relative;
-  background: #2c3e50;
-  background-position: center; /* Centra la imagen en el div */
-  width: 100%; /* Ancho del div */
-  height: 90vh; /* Altura del div */
+.btn_form {
+  background-color: rosybrown;
 }
 
-.spikes::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  left: -20%;
-  top: 100%;
-  z-index: 10;
-  display: block;
-  height: 60px;
-  background-size: 60px 100%;
-  background-image: linear-gradient(135deg, #2c3e50 25%, transparent 25%),
-    linear-gradient(225deg, #2c3e50 25%, transparent 25%);
-  background-position: 0 0;
+.btn_form:hover {
+  background-color: #c29b9b;
 }
