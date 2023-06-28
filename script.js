@@ -261,6 +261,9 @@ const updateCarrito = (paquete) => {
             showConfirmButton: false,
           });
           deletePaquete(paquete.id);
+          if (carrito.length === 0) {
+            createComprarElement();
+          }
         }
       });
     });
