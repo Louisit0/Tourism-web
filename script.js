@@ -147,7 +147,7 @@ const generarTarjetasResenaClientes = (resenas) => {
 
     // Crear el cuerpo de la card
     const cardBody = document.createElement("div");
-    cardBody.classList.add("card-body", "m-4");
+    cardBody.classList.add("card-body", "m-3");
 
     const divRow = document.createElement("div");
     divRow.classList.add("d-flex", "flex-row", "justify-content-start");
@@ -385,13 +385,6 @@ const deletePaquete = (productoId) => {
 
     guardarCarritoEnLocalStorage();
     createTotalElement();
-
-    //prueba.
-
-    // if (carrito.length === 0) {
-    //   const btnComprar = document.getElementById("comprar");
-    //   btnComprar.classList.add("d-none");
-    // }
   }
 };
 
