@@ -210,14 +210,9 @@ const addPaquete = (destino) => {
   total += destino.precio;
   console.log(`Cantidad de ${destino.nombre} actualizada: ${destino.cantidad}`);
   guardarCarritoEnLocalStorage();
-
-  // // POR ACA ME QUEDE
-  // if (carrito.length !== 0) {
-  //   const btnComprar = document.getElementById("comprar");
-  //   btnComprar.classList.add("d-block");
-  // }
 };
 
+//Update es cuando ya agregaste un paquete
 const updateCarrito = (paquete) => {
   const paqueteExistente = document.getElementById("paquete-cart" + paquete.id);
 
@@ -226,6 +221,13 @@ const updateCarrito = (paquete) => {
     const cantidadTxt = document.getElementById("cant" + paquete.id);
     paquete.cantidad += 1;
     total = carrito.reduce((acc, paquete) => acc + paquete.precio, 0);
+
+    carrito = carrito.map((item) => {
+      if (item.id === paquete.id) {
+        item.cantidad = paquete.cantidad;
+      }
+      return item;
+    });
 
     cantidadTxt.textContent = `Cantidad: ${paquete.cantidad}`;
     console.log("Cantidad: " + paquete.cantidad);
