@@ -27,3 +27,7 @@ body {
 .btn_form:hover {
   background-color: #c29b9b;
 }
+
+.text-justify {
+  text-align: justify;
+}
