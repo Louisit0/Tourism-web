@@ -17,6 +17,10 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body style="background-color: #ededed">
@@ -113,35 +117,37 @@
     </div>
     <!-- End offCanvas -->
 
-    <main class="container mx-auto w-100">
+    <main class="container w-100">
       <h2 id="destinos" class="text-center fw-bold mt-5">Destinos populares</h2>
 
       <div
         id="destino"
-        class="container w-100 my-2 d-flex flex-wrap justify-content-center"
+        class="container w-100 my-2 grid-template-destinos justify-content-center"
       ></div>
       <div class="text-center">
-        <h2 id="resena" class="ms-md-3 fw-bold mt-5">
+        <h2 id="resena" class="mx-4 fw-bold mt-5">
           Reseñas de nuestros clientes
         </h2>
 
         <div
           id="clientes"
-          class="container w-100 my-2 d-flex flex-wrap justify-content-center"
+          class="container my-2 grid-template-resenas justify-content-center"
         ></div>
       </div>
-      <div class="my-2 mx-4 w-75 mx-auto">
-        <h2 class="mb-4 ms-3 fw-bold text-center mt-5">
+      <div class="my-2 mx-4 mx-auto">
+        <h2 class="mb-4 fw-bold text-center mt-5">
           No dejes escapar esta oportunidad! 😊🚀
         </h2>
-        <h4 class="w-75 mx-auto" style="text-align: justify">
+        <h4 class="w-75 mx-auto text-start text-lg-center">
           En nuestros servicios turísticos, la confianza es nuestra prioridad
           número uno. Sabemos que viajar es una experiencia emocionante y
           significativa, y entendemos la importancia de contar con un equipo
           confiable que se preocupe por cada detalle de tu viaje.
         </h4>
       </div>
-      <form class="row g-3 container mx-auto card pb-4 my-5 col-12 col-md-6">
+      <form
+        class="row g-3 container mx-auto card pb-4 my-5 col-10 col-md-8 col-lg-6"
+      >
         <h2 id="contacto" class="mb-4 ms-3 fw-bold">Contactanos</h2>
         <div class="row m-0">
           <div class="col-12 col-md-6">
