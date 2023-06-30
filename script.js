@@ -28,7 +28,6 @@ const generarTarjetasDestinosTuristicos = (destinos) => {
     // Crear el elemento de la card
     const card = document.createElement("div");
     card.classList.add("card", "rounded-3", "m-4");
-    card.style.width = "23rem";
 
     // Crear la imagen de la card
     const img = document.createElement("img");
@@ -38,7 +37,7 @@ const generarTarjetasDestinosTuristicos = (destinos) => {
 
     // Crear el cuerpo de la card
     const cardBody = document.createElement("div");
-    cardBody.classList.add("card-body", "m-4");
+    cardBody.classList.add("card-body", "m-3");
 
     // Crear el título de la card
     const titulo = document.createElement("h2");
@@ -82,7 +81,7 @@ const generarTarjetasDestinosTuristicos = (destinos) => {
     btn.classList.add("btn", "w-100", "mt-2", "mb-0");
     btn.style.backgroundColor = "rosybrown";
     btn.style.color = "white";
-    btn.textContent = "Reservar ahora 📚";
+    btn.textContent = "Reservar ahora ✈️";
     btn.disabled = !destino.disponibilidad;
 
     // Agregar los atributos data-bs-toggle, data-bs-target y aria-controls
@@ -135,7 +134,6 @@ const generarTarjetasResenaClientes = (resenas) => {
   resenas.forEach((cliente) => {
     const card = document.createElement("div");
     card.classList.add("card", "rounded-5", "m-4");
-    card.style.width = "27rem";
 
     // Crear la imagen de la card
     const img = document.createElement("img");
@@ -240,7 +238,13 @@ const updateCarrito = (paquete) => {
     card.setAttribute("id", "paquete-cart" + paquete.id);
 
     const btnRemove = document.createElement("button");
-    btnRemove.classList.add("btn-close", "align-self-end", "mb-2");
+    btnRemove.classList.add("btn", "align-self-end", "mb-2", "text-secondary");
+
+    const icon = document.createElement("i");
+    icon.classList.add("bi", "bi-trash-fill");
+
+    btnRemove.appendChild(icon);
+
     btnRemove.addEventListener("click", function () {
       Swal.fire({
         title: "¿Estás seguro/a de esto?",
