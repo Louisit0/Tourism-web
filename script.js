@@ -78,9 +78,8 @@ const generarTarjetasDestinosTuristicos = (destinos) => {
       : "No disponible ❌";
 
     const btn = document.createElement("button");
-    btn.classList.add("btn", "w-100", "mt-2", "mb-0");
-    btn.style.backgroundColor = "rosybrown";
-    btn.style.color = "white";
+    btn.classList.add("btn", "btn-primary", "w-100", "mt-2", "mb-0");
+    // btn.style.backgroundColor = "rosybrown";
     btn.textContent = "Reservar ahora ✈️";
     btn.disabled = !destino.disponibilidad;
 
@@ -93,16 +92,6 @@ const generarTarjetasDestinosTuristicos = (destinos) => {
     btn.addEventListener("click", function () {
       addPaquete(destino);
       updateCarrito(destino);
-    });
-
-    // Establecer el color de hover
-    btn.addEventListener("mouseover", function () {
-      this.style.backgroundColor = "#c29b9b";
-    });
-
-    // Restaurar el color original al salir del hover
-    btn.addEventListener("mouseout", function () {
-      this.style.backgroundColor = "rosybrown";
     });
 
     // Agregar elementos al cuerpo de la card
@@ -276,15 +265,14 @@ const updateCarrito = (paquete) => {
 
     // Crear la imagen de la card
     const img = document.createElement("img");
-    img.classList.add("card-img-top", "w-100", "h-100");
+    img.classList.add("card-img-top", "w-100", "h-100", "rounded");
     img.src = paquete.imagen;
     img.alt = paquete.nombre;
 
     // Crear el título de la card
     const titulo = document.createElement("h3");
-    titulo.classList.add("card-title", "my-2");
+    titulo.classList.add("card-title", "my-2", "text-black");
     titulo.textContent = `Viaje a ${paquete.nombre}`;
-    titulo.style.color = "rosybrown";
 
     // Crear el precio de la card
     const precio = document.createElement("p");
@@ -296,9 +284,9 @@ const updateCarrito = (paquete) => {
     precioValor.textContent = "$ " + paquete.precio;
 
     const divRow = document.createElement("div");
-    divRow.classList.add("d-flex", "flex-row");
+    divRow.classList.add("d-flex", "flex-row", "justify-content-between");
     // Agregar el texto "Precio: $" y el valor del precio al elemento <p>
-    precio.innerHTML = `${precioValor.outerHTML}`;
+    precio.innerHTML = `${precioValor.outerHTML} / cu`;
 
     const cantidadTxt = document.createElement("p");
     cantidadTxt.classList.add("card-text", "fw-bold", "my-auto");
@@ -313,9 +301,10 @@ const updateCarrito = (paquete) => {
     card.appendChild(titulo);
 
     divRow.appendChild(precio);
+    divRow.appendChild(cantidadTxt);
 
     card.appendChild(divRow);
-    card.appendChild(cantidadTxt);
+
     card.appendChild(hr);
 
     carritoContainer.appendChild(card);
@@ -344,7 +333,9 @@ const createComprarElement = () => {
   btn.classList.add(
     "btn",
     carrito.length !== 0 ? "d-block" : "d-none",
-    "btn-secondary",
+    "btn-outline-secondary",
+    "fw-bold",
+    "border-2",
     "w-100",
     "mx-auto"
   );
@@ -421,3 +412,59 @@ const cargarCarritoDesdeLocalStorage = () => {
 fetchDestinosTuristicos();
 fetchResenaClientes();
 init();
+
+// Formulario
+
+const nombre = document.getElementById("nombre");
+const apellido = document.getElementById("apellido");
+const email = document.getElementById("email");
+const textarea = document.getElementById("textarea");
+
+const nombreError = document.getElementById("nombreError");
+const apellidoError = document.getElementById("apellidoError");
+const emailError = document.getElementById("emailError");
+const textareaError = document.getElementById("textareaError");
+
+const formSubmit = (event) => {
+  event.preventDefault();
+
+  if (nombre.value === "") {
+    nombreError.textContent = "El campo nombre está vacío";
+    nombreError.classList.add("text-danger", "fw-bold");
+    nombre.classList.add("border-2", "border-danger");
+  } else {
+    nombreError.textContent = "";
+    nombreError.classList.remove("text-danger", "fw-bold");
+    nombre.classList.remove("border-2", "border-danger");
+  }
+
+  if (apellido.value === "") {
+    apellidoError.textContent = "El campo apellido está vacío";
+    apellidoError.classList.add("text-danger", "fw-bold");
+    apellido.classList.add("border-2", "border-danger");
+  } else {
+    apellidoError.textContent = "";
+    apellidoError.classList.remove("text-danger", "fw-bold");
+    apellido.classList.remove("border-2", "border-danger");
+  }
+
+  if (email.value === "") {
+    emailError.textContent = "El campo email está vacío";
+    emailError.classList.add("text-danger", "fw-bold");
+    email.classList.add("border-2", "border-danger");
+  } else {
+    emailError.textContent = "";
+    emailError.classList.remove("text-danger", "fw-bold");
+    email.classList.remove("border-2", "border-danger");
+  }
+
+  if (textarea.value === "") {
+    textareaError.textContent = "El campo textarea está vacío";
+    textareaError.classList.add("text-danger", "fw-bold");
+    textarea.classList.add("border-2", "border-danger");
+  } else {
+    textareaError.textContent = "";
+    textareaError.classList.remove("text-danger", "fw-bold");
+    textarea.classList.remove("border-2", "border-danger");
+  }
+};
