@@ -43,7 +43,6 @@ const generarTarjetasDestinosTuristicos = (destinos) => {
     const titulo = document.createElement("h2");
     titulo.classList.add("card-title");
     titulo.textContent = destino.nombre;
-    titulo.style.color = "rosybrown";
 
     // Crear la descripción de la card
     const descripcion = document.createElement("p");
@@ -78,8 +77,7 @@ const generarTarjetasDestinosTuristicos = (destinos) => {
       : "No disponible ❌";
 
     const btn = document.createElement("button");
-    btn.classList.add("btn", "btn-primary", "w-100", "mt-2", "mb-0");
-    // btn.style.backgroundColor = "rosybrown";
+    btn.classList.add("btn", "btn-dark", "w-100", "mt-2", "mb-0");
     btn.textContent = "Reservar ahora ✈️";
     btn.disabled = !destino.disponibilidad;
 
@@ -222,15 +220,20 @@ const updateCarrito = (paquete) => {
     paquete.cantidad = 1;
     // Crea una nueva card para el paquete
     const card = document.createElement("div");
-    card.classList.add("w-100", "d-flex", "flex-column");
+    card.classList.add(
+      "w-100",
+      "d-flex",
+      "flex-column",
+      "justify-content-between"
+    );
     card.style.width = "23rem";
     card.setAttribute("id", "paquete-cart" + paquete.id);
 
     const btnRemove = document.createElement("button");
-    btnRemove.classList.add("btn", "align-self-end", "mb-2", "text-secondary");
+    btnRemove.classList.add("btn", "text-secondary");
 
     const icon = document.createElement("i");
-    icon.classList.add("bi", "bi-trash-fill");
+    icon.classList.add("bi", "bi-trash-fill", "text-dark");
 
     btnRemove.appendChild(icon);
 
@@ -269,9 +272,12 @@ const updateCarrito = (paquete) => {
     img.src = paquete.imagen;
     img.alt = paquete.nombre;
 
+    const row = document.createElement("div");
+    row.classList.add("d-flex", "flex-row", "justify-content-between");
+
     // Crear el título de la card
-    const titulo = document.createElement("h3");
-    titulo.classList.add("card-title", "my-2", "text-black");
+    const titulo = document.createElement("h4");
+    titulo.classList.add("fs-4", "my-2", "text-black");
     titulo.textContent = `Viaje a ${paquete.nombre}`;
 
     // Crear el precio de la card
@@ -280,11 +286,15 @@ const updateCarrito = (paquete) => {
 
     // Crear el elemento <span> para el valor del precio
     const precioValor = document.createElement("span");
-    precioValor.style.color = "green";
     precioValor.textContent = "$ " + paquete.precio;
 
     const divRow = document.createElement("div");
-    divRow.classList.add("d-flex", "flex-row", "justify-content-between");
+    divRow.classList.add(
+      "d-flex",
+      "flex-row",
+      "justify-content-between",
+      "mt-2"
+    );
     // Agregar el texto "Precio: $" y el valor del precio al elemento <p>
     precio.innerHTML = `${precioValor.outerHTML} / cu`;
 
@@ -296,15 +306,16 @@ const updateCarrito = (paquete) => {
     const hr = document.createElement("hr");
     hr.classList.add("w-100", "my-4");
 
-    card.appendChild(btnRemove);
-    card.appendChild(img);
-    card.appendChild(titulo);
+    row.appendChild(titulo);
+    row.appendChild(btnRemove);
 
     divRow.appendChild(precio);
     divRow.appendChild(cantidadTxt);
 
-    card.appendChild(divRow);
+    card.appendChild(row);
+    card.appendChild(img);
 
+    card.appendChild(divRow);
     card.appendChild(hr);
 
     carritoContainer.appendChild(card);
@@ -333,7 +344,7 @@ const createComprarElement = () => {
   btn.classList.add(
     "btn",
     carrito.length !== 0 ? "d-block" : "d-none",
-    "btn-outline-secondary",
+    "btn-outline-dark",
     "fw-bold",
     "border-2",
     "w-100",
