@@ -463,6 +463,10 @@ const formSubmit = (event) => {
     emailError.textContent = "El campo email está vacío";
     emailError.classList.add("text-danger", "fw-bold");
     email.classList.add("border-2", "border-danger");
+  } else if (!email.validity.valid) {
+    emailError.textContent = "Ingrese un mail válido";
+    emailError.classList.add("text-danger", "fw-bold");
+    email.classList.add("border-2", "border-danger");
   } else {
     emailError.textContent = "";
     emailError.classList.remove("text-danger", "fw-bold");
@@ -479,7 +483,13 @@ const formSubmit = (event) => {
     textarea.classList.remove("border-2", "border-danger");
   }
 
-  if (nombre.value && apellido.value && email.value && textarea.value != "") {
+  if (
+    nombre.value &&
+    apellido.value &&
+    email.value &&
+    textarea.value != "" &&
+    email.validity.valid
+  ) {
     Swal.fire({
       icon: "success",
       title: "¡Mensaje enviado!",
