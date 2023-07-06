@@ -20,14 +20,6 @@ body {
   z-index: -1;
 }
 
-.btn_form {
-  background-color: rosybrown;
-}
-
-.btn_form:hover {
-  background-color: #c29b9b;
-}
-
 .text-justify {
   text-align: justify;
 }
