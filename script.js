@@ -59,7 +59,7 @@ const generarTarjetasDestinosTuristicos = (destinos) => {
 
     // Crear el elemento <span> para el valor del precio
     const precioValor = document.createElement("span");
-    precioValor.style.color = "green";
+    precioValor.style.color = "black";
     precioValor.textContent = "$ " + destino.precio;
 
     // Agregar el texto "Precio: $" y el valor del precio al elemento <p>
@@ -477,5 +477,16 @@ const formSubmit = (event) => {
     textareaError.textContent = "";
     textareaError.classList.remove("text-danger", "fw-bold");
     textarea.classList.remove("border-2", "border-danger");
+  }
+
+  if (nombre.value && apellido.value && email.value && textarea.value != "") {
+    Swal.fire({
+      icon: "success",
+      title: "¡Mensaje enviado!",
+      text: "Gracias por contactarnos. Nos pondremos en contacto contigo pronto.",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    document.getElementById("form").reset();
   }
 };
