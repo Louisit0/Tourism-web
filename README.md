@@ -13,3 +13,6 @@ Contiene:
 - SweetAlerts2
 - Peticiones fetch a json local.
 - Local Storage
+
+Para visitar el sitio online 🌐:
+https://louisit0.github.io/Tourism-web/
